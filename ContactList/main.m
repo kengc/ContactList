@@ -19,23 +19,46 @@ int main(int argc, const char * argv[]) {
         
 //        The menu: What would you like do next? new - Create a new contact list - List all contacts quit - Exit Application > _
         char inputChars[255];
+        BOOL loop = YES;
+//        typedef enum{
+//            quit,
+//            new,
+//            list,
+//            show,
+//            find
+//        } Choices;
+        
         InputCollector *collect = [[InputCollector alloc] init];
         
-        NSLog(@"\nThe menu: What would you like do next? \nnew - Create a new contact \nlist - List all contacts \nquit - Exit Application \n");
+        do{
+
+        NSLog(@"\n\nThe menu: What would you like do next? \nnew - Create a new contact \nlist - List all contacts \nquit - Exit Application \n");
         
         fgets(inputChars, 255, stdin);
         
         //NSLog(@"your input is: %s", inputChars);
         
         NSString *inputString = [NSString stringWithCString:inputChars encoding:NSUTF8StringEncoding];
+            
+        NSString *userInput = [collect inputForPrompt:inputString];
+            
+        if([userInput isEqualToString:@"quit"]){
+            loop = NO;
+            NSLog(@"bye..");
+        }
         
-        NSCharacterSet *characterSet = [NSCharacterSet whitespaceAndNewlineCharacterSet];
-        
-        NSString *trimmed = [inputString stringByTrimmingCharactersInSet:characterSet];
-
-        
-        NSString *userInput = [collect inputForPrompt:trimmed];
-        NSLog(@"user wrote %@", userInput);
+        if([userInput isEqualToString:@"new"]){
+            loop = NO;
+            NSLog(@"bye..");
+        }
+//            
+//        if (collect.loop){
+//            NSLog(@"user wrote %@", userInput);
+//        } else {
+//            loop = NO;
+//        }
+            
+    }while(loop);
         
     }
     return 0;

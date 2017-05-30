@@ -10,6 +10,10 @@
 
 @interface InputCollector : NSObject
 
+
+//-(void)switchTest:(enum choices)testColor;
 -(NSString *)inputForPrompt:(NSString *)promptString;
+-(NSString *)newContactInput;
+//-(NSString *)inputForPrompt;
 
 @end
