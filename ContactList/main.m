@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import "InputCollector.h"
+#import "Contact.h"
+#import "ContactList.h"
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
@@ -29,6 +31,7 @@ int main(int argc, const char * argv[]) {
 //        } Choices;
         
         InputCollector *collect = [[InputCollector alloc] init];
+        ContactList *contactList = [[ContactList alloc] init];
         
         do{
 
@@ -40,6 +43,7 @@ int main(int argc, const char * argv[]) {
         
         NSString *inputString = [NSString stringWithCString:inputChars encoding:NSUTF8StringEncoding];
             
+        //so it doesn't get reset
         NSString *userInput = [collect inputForPrompt:inputString];
             
         if([userInput isEqualToString:@"quit"]){
@@ -48,15 +52,22 @@ int main(int argc, const char * argv[]) {
         }
         
         if([userInput isEqualToString:@"new"]){
-            loop = NO;
-            NSLog(@"bye..");
+            //loop = YES;
+            
+            Contact *contact = [[Contact alloc] init];
+            
+            contact.name = [collect getNameInput];
+            contact.email = [collect getEmailInput];
+            
+            [contactList addToArray:contact];
+            
+            NSLog(@"name %@", contact.name);
+            NSLog(@"email %@", contact.email);
         }
-//            
-//        if (collect.loop){
-//            NSLog(@"user wrote %@", userInput);
-//        } else {
-//            loop = NO;
-//        }
+            
+        if([userInput isEqualToString:@"list"]){
+            [contactList printArray];
+        }
             
     }while(loop);
         

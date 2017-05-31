@@ -13,7 +13,8 @@
 
 //-(void)switchTest:(enum choices)testColor;
 -(NSString *)inputForPrompt:(NSString *)promptString;
--(NSString *)newContactInput;
+-(NSString *)getNameInput;
+-(NSString *)getEmailInput;
 //-(NSString *)inputForPrompt;
 
 @end

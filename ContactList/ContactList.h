@@ -7,7 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+@class Contact;
 
 @interface ContactList : NSObject
+
+@property (nonatomic)NSMutableArray *contactList;
+
+-(void)addToArray:(Contact *)contact;
+-(void)printArray;
 
 @end
